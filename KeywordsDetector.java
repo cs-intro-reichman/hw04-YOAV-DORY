@@ -21,6 +21,43 @@ public class KeywordsDetector {
     // Iterates through all the sentences.
     // If a sentence contains one or more of the kewords, prints it.
     public static void detectAndPrint(String[] sentences, String[] keywords) {
-        // Replace this comment with your code
+        for(int i = 0; i < sentences.length; i++){
+            String[] words = toStringArray(sentences[i]); 
+            for(int j = 0; j < words.length; j++){
+                for(int k = 0; k < keywords.length; k++){
+                    if (keywords[k].equalsIgnoreCase(words[j])) {
+                        System.out.println(sentences[i]);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    public static String[] toStringArray(String str){
+        String[] wordsArray = new String[howManySpaces(str) + 1];
+        int j = 0;
+        for(int i = 0; i < wordsArray.length; i++){
+            wordsArray[i] = "";
+            while ( j < str.length() && str.charAt(j) != ' ') {
+                wordsArray[i] += str.charAt(j);
+                j++;
+            }
+            j++;
+        }
+        return wordsArray;
+    }
+
+
+
+    public static int howManySpaces(String str){
+        int spaces = 0;
+        for(int i = 0; i < str.length(); i++){
+            if (str.charAt(i) == ' ') {
+                spaces++;
+            }
+        }
+        return spaces;
     }
 }
